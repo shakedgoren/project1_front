@@ -14,15 +14,18 @@ const displayCustomers = async () => {
 
 const addCustomer = async () => {
     await axios.post(MY_SERVER + "/Customers", { customers_name: customer_name.value, age: age.value, city: city.value }).then((res) => console.log(res.data))
+    displayCustomers()
 }
 
 const deleteCustomer = async (id) => {
     await axios.delete(MY_SERVER + "/Customers/" + id).then((res) => console.log(res.data))
+    displayCustomers()
 }
 
 const updateCustomer = async (id) => {
     const res = await axios.put(MY_SERVER + "/Customers/" + id, { customers_name: customer_name.value, age: age.value, city: city.value })
     console.log(res)
+    displayCustomers()
 }
 
 const searchCustomer = async () => {
