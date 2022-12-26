@@ -56,11 +56,14 @@ const searchCustomer = async () => {
 
 const showCustomer = async () => {
     const res = await axios.get(MY_SERVER + "/Customers")
-    Customers_display.innerHTML = res.data.filter(cus =>cus.customers_name.includes(customer_search.value)).map(cus=> `
+    Customers_display.innerHTML = res.data.filter(cus =>cus.customers_name.includes(customer_search.value) && cus.cstatus == true).map(cus=>`
     <br><div class="card w-25">
     <div class="card-body">
-    <h5 class="card-title">Customer name:${cus.customers_name}</h5>
-    <p class="card-text">Customer ID:${cus.id}<br>Age:${cus.age}<br>City:${cus.city}</p>
-    <button class="btn btn-warning btn-lg" onclick='updateCustomer(${cus.id})'>Update</button> <button class="btn btn-danger btn-lg" onclick="deleteCustomer(${cus.id})">Delete</button></div></div>`).join("")
-    console.log("showing choosen customer")
+    <h5 class="card-title">Customer name : ${cus.customers_name}</h5>
+    <p class="card-text">Customer ID : ${cus.id}<br>Age : ${cus.age}<br>City : ${cus.city}</p>
+    <button class="btn btn-warning btn-lg" onclick='updateCustomer(${cus.id})'>Update</button> <button class="btn btn-danger btn-lg" onclick="deleteCustomer(${cus.id},${cus.cstatus})">disable</button></div></div>`).join("")
+    Customers_display.innerHTML = res.data.filter(cus =>cus.customers_name.includes(customer_search.value) && cus.cstatus == true).map(cus => `
+    <br><div class="card w-25">
+    <div class="card-body">
+    <h5 class="card-title">ID : ${cus.id} ; Customer name : ${cus.customers_name}</h5><button class="btn btn-secondary btn-s" onclick="deleteCustomer(${cus.id},${cus.cstatus})">user disable - click to unable him</button></div></div>`).join("")
 }
