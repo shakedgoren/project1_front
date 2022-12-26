@@ -56,7 +56,7 @@ const searchCustomer = async () => {
 
 const showCustomer = async () => {
     const res = await axios.get(MY_SERVER + "/Customers")
-    Customers_display.innerHTML += res.data.filter(cus =>cus.customers_name.includes(customer_search.value) && cus.cstatus == true).map(cus=>`
+    Customers_display.innerHTML = res.data.filter(cus =>cus.customers_name.includes(customer_search.value) && cus.cstatus == true).map(cus=>`
     <br><div class="card w-25">
     <div class="card-body">
     <h5 class="card-title">Customer name : ${cus.customers_name}</h5>
