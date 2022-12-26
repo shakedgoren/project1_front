@@ -16,7 +16,7 @@ const displayCustomers = async () => {
 
 const displayDcustomers = async () => {
     const res = await axios.get(MY_SERVER + "/Customers")
-    Customers_display.innerHTML += res.data.filter(cus=>cus.cstatus == false).map(cus => `
+    Customers_display.innerHTML = res.data.filter(cus=>cus.cstatus == false).map(cus => `
     <br><div class="card w-25">
     <div class="card-body">
     <h5 class="card-title">ID : ${cus.id} ; Customer name : ${cus.customers_name}</h5><button class="btn btn-secondary btn-s" onclick="deleteCustomer(${cus.id},${cus.cstatus})">user disable - click to unable him</button></div></div>`).join("")
