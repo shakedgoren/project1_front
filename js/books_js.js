@@ -59,7 +59,7 @@ const showBook = async () => {
     <p class="card-text">Book ID:${book.id}<br>Author:${book.author}<br>Published:${book.published_year}<br>Book type:${book.book_type}</p>
     <button class="btn btn-warning btn-lg" onclick='updateBook(${book.id})'>Update</button> <button class="btn btn-danger btn-lg" onclick="deleteBook(${book.id},${book.bstatus})">disable</button>
     </div></div>`).join("")
-    books_display.innerHTML = res.data.filter(book => book.book_name.includes(book_search.value) && book.bstatus == false).map(book => `<br><div class="card w-25">
+    books_display.innerHTML += res.data.filter(book => book.book_name.includes(book_search.value) && book.bstatus == false).map(book => `<br><div class="card w-25">
     <div class="card-body">
     <h5 class="card-title">ID : ${book.id} ; Book name:${book.book_name}</h5><button class="btn btn-secondary btn-s" onclick="deleteBook(${book.id},${book.bstatus})">book disable - click to unable him</button>
     </div></div>`).join("")
