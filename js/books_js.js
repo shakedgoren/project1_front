@@ -15,15 +15,18 @@ const displayBooks = async () => {
 
 const addBook = async () => {
     await axios.post(MY_SERVER + "/Books", { book_name: book_name.value, author: author.value, published_year: published_year.value, book_type: book_type.value }).then((res) => console.log(res.data))
+    displayBooks()
 }
 
 const deleteBook = async (id) => {
     await axios.delete(MY_SERVER + "/Books/" + id).then((res) => console.log(res.data))
+    displayBooks()
 }
 
 const updateBook = async (id) => {
     const res = await axios.put(MY_SERVER + "/Books/" + id, { book_name: book_name.value, author: author.value, published_year: published_year.value, book_type: book_type.value })
     console.log(res)
+    displayBooks()
 }
 
 const searchBook = async () => {
