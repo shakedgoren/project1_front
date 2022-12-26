@@ -80,14 +80,17 @@ const dateLoans = (book_type) => {
 const addLoan = async () => {
   console.log(parseInt(bookId.value[0]))
     await axios.post(MY_SERVER + "/Loans", { "Customers_id": cusID.value, "Books_id":booktype[0], "start": loanT.value, "end": dateLoans(booktype[1]) })
+   displayLoans() 
 }
 
 const deleteLoan = async (id) => {
     await axios.delete(MY_SERVER + "/Loans/" + id).then((res) => console.log(res.data))
+    displayLoans() 
 }
 
 const updateLoan = async (id) => {
     const res = await axios.put(MY_SERVER + "/Loans/" + id, { "Customers_id": cusID.value, "Books_id": bookId.value[0], "start": loanT.value, "end": dateLoans(bookId.value[2]) })
+    displayLoans() 
 }
 
 const lateLoans = async () => {
@@ -120,6 +123,7 @@ const lateLoans = async () => {
 
 const updateStatus = async (id) => {
     const res = await axios.put(MY_SERVER + "/Loans/returend/" + id, { returned: true })
+    displayLoans() 
 }
 
 const loanDateLate=(end)=>{
